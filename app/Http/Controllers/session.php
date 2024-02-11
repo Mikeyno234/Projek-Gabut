@@ -39,5 +39,10 @@ class session extends Controller
       }
             
     }
+
+    function logout(){
+      Auth::logout();
+      return redirect('');
+    }
     
 }

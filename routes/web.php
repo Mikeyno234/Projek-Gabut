@@ -14,12 +14,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [session::class,"index"]);
-Route::post('/',[session::class,'login']);
 
 
+
+
+Route::middleware(['guest'])-> group (function () 
+{
+    Route::get('/', [session::class,"index"]);
+    Route::post('/',[session::class,'login']);
+
+});
+
+Route::get('/home', function()
+{
+    return redirect('/admin');
+});
 
 
 Route::get('/admin',[AdminController::class,'index']);
+Route::get('/logout',[session::class,'logout']);
 
 
